@@ -1,0 +1,17 @@
+echo "# Environment
+.env
+.env.*
+
+# Build artifacts
+dist/
+node_modules/
+
+# OS files
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log" > .gitignore
