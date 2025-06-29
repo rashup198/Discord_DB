@@ -9,7 +9,7 @@ import { DiscordDB } from 'discord-db';
 const db = new DiscordDB({
   botToken: process.env.DISCORD_BOT_TOKEN!,
   channelId: process.env.DISCORD_CHANNEL_ID!,
-  encryptionKey: process.env.ENCRYPTION_KEY // Optional
+  encryptionKey: process.env.ENCRYPTION_KEY
 });
 
 // Store encrypted sensitive data
