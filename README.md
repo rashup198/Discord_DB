@@ -1,3 +1,4 @@
+
 # Discord_DB
  
 A TypeScript library that transforms Discord channels into a powerful NoSQL database with MongoDB-like operations, complete with optional AES-256 encryption support. Perfect for prototypes, small projects, and applications needing unconventional data storage solutions.
@@ -129,3 +130,31 @@ interface DiscordDBConfig {
 | `deleteOne(filter)`        | Delete single document      | `await db.deleteOne({ id: 1 })`                       |
 | `countDocuments(filter)`   | Count matching documents    | `await db.countDocuments({ status: 'active' })`       |
 | `isEncryptionEnabled()`    | Check encryption status     | `db.isEncryptionEnabled()`                            |
+
+
+#Query Operators
+```ts
+// Comparison
+{ age: { $gt: 18 } }          // Greater than
+{ rating: { $lte: 4.5 } }     // Less than or equal
+{ status: { $in: ['active', 'pending'] } } // In array
+
+// Logical
+{ $and: [{ age: { $gt: 18 } }, { age: { $lt: 65 } }] }
+{ $or: [{ role: 'admin' }, { premium: true }] }
+
+// Element
+{ email: { $exists: true } }   // Field exists
+
+// Evaluation
+{ name: { $regex: /^john/i } } // Regular expression
+```
+
+## Update Operators
+```ts
+{ $set: { name: 'Alice', status: 'active' } }  // Set fields
+{ $unset: { tempField: 1 } }                   // Remove field
+{ $inc: { age: 1, score: 5 } }                 // Increment values
+{ $push: { tags: 'new-tag' } }                 // Add to array
+{ $pull: { tags: 'old-tag' } }                 // Remove from array
+```
