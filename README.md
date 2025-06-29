@@ -40,6 +40,39 @@ const user = await db.findOne({ ssn: '123-45-6789' });
 
 🔧 Configurable: Custom cache TTL, base URL, and encryption settings
 
+# Quick Start
+
+## 1. Create Discord Application
+Go to Discord Developer Portal
+
+Create New Application → Name it (e.g., "MyDatabaseBot")
+
+Navigate to "Bot" → Create Bot → Reset Token → Copy Token
+
+## 2. Set Up Bot Permissions
+In "OAuth2" → "URL Generator":
+
+Scopes: bot and applications.commands
+
+Bot Permissions:
+
+View Channel
+
+Send Messages
+
+Manage Messages
+
+Read Message History
+
+Use generated URL to add bot to your server
+
+## 3. Get Channel ID
+In Discord app, enable Developer Mode:
+
+Settings → Advanced → Developer Mode ON
+
+Right-click your text channel → "Copy ID"
+
 #Basic Usage 
 ```ts
 import { DiscordDB } from 'discordongo-db';
@@ -158,3 +191,110 @@ interface DiscordDBConfig {
 { $push: { tags: 'new-tag' } }                 // Add to array
 { $pull: { tags: 'old-tag' } }                 // Remove from array
 ```
+
+
+# Quick Start
+
+## 1. Create Discord Application
+Go to Discord Developer Portal
+
+Create New Application → Name it (e.g., "MyDatabaseBot")
+
+Navigate to "Bot" → Create Bot → Reset Token → Copy Token
+
+## 2. Set Up Bot Permissions
+In "OAuth2" → "URL Generator":
+
+Scopes: bot and applications.commands
+
+Bot Permissions:
+
+View Channel
+
+Send Messages
+
+Manage Messages
+
+Read Message History
+
+Use generated URL to add bot to your server
+
+## 3. Get Channel ID
+In Discord app, enable Developer Mode:
+
+Settings → Advanced → Developer Mode ON
+
+Right-click your text channel → "Copy ID"
+
+
+# Limitations & Considerations
+
+Message Size Limit: 2000 characters per document (Discord constraint)
+
+Rate Limits: Discord API rate limits apply (auto-handled with retries)
+
+History Limit: Discord only retains last 100,000 messages per channel
+
+No Transactions: Atomic operations not guaranteed
+
+No Schema Enforcement: Flexible but requires validation
+
+# Running Examples
+
+```ts
+# Create .env file first!
+DISCORD_BOT_TOKEN=your_bot_token
+DISCORD_CHANNEL_ID=your_channel_id
+ENCRYPTION_KEY=optional_32_char_key
+
+npx ts-node examples/basic-usage.ts
+```
+
+# Express.js REST API
+```ts
+cd examples/express-app
+npm install
+cp .env.example .env # Add your credentials
+npm run dev
+
+# Endpoints:
+GET    /health          # Health check
+GET    /api/users       # List users
+POST   /api/users       # Create user
+GET    /api/users/:id   # Get user
+PUT    /api/users/:id   # Update user
+DELETE /api/users/:id   # Delete user
+GET    /api/stats       # Statistics
+```
+
+# 🤝 Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+Fork the repository
+
+Create a feature branch (git checkout -b feature/amazing-feature)
+
+Commit your changes (git commit -m 'Add amazing feature')
+
+Push to the branch (git push origin feature/amazing-feature)
+
+Open a pull request
+
+## Development Setup
+```ts
+git clone https://github.com/your-username/discordongo-db.git
+cd discordongo-db
+npm install
+
+# Build library
+npm run build
+
+# Run tests
+npm test
+
+# Start example apps
+npm run example:basic
+npm run example:express
+```
+
